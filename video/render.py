@@ -11,7 +11,7 @@ NAVY, BLUE, CYAN, WHITE, GREY, DIM = (5, 28, 44), (34, 81, 255), (0, 169, 244), 
 F = "C:/Windows/Fonts/"
 def font(name, size): return ImageFont.truetype(F + name, size)
 KB = {s: font("malgunbd.ttf", s) for s in (22, 28, 34, 40, 48, 56, 64, 80)}
-KR = {s: font("malgun.ttf", s) for s in (20, 24, 26, 30)}
+KR = {s: font("malgun.ttf", s) for s in (20, 24, 26, 30, 40)}
 NUM = {s: font("georgiab.ttf", s) for s in (40, 90, 150, 220)}
 WAVEC = {"W1": BLUE, "W2": CYAN, "W3": GREY, "W4": WHITE}
 
@@ -74,15 +74,15 @@ def chip(d, cx, cy, s, p, col=CYAN):
 def subtitle(d, s, t, dur):
     a = clamp(t / 0.3) * clamp((dur - t) / 0.3)
     if a <= 0: return
-    f = KR[24]; lines, cur = [], ""
+    f = KR[40]; lines, cur = [], ""
     for w in s.split(" "):
-        if d.textlength(cur + " " + w, font=f) > 1060 and cur: lines.append(cur); cur = w
+        if d.textlength(cur + " " + w, font=f) > 1100 and cur: lines.append(cur); cur = w
         else: cur = (cur + " " + w).strip()
     lines.append(cur)
-    y0 = 660 - 34 * (len(lines) - 1)
+    y0 = 650 - 52 * (len(lines) - 1)
     for i, l in enumerate(lines):
-        tw = d.textlength(l, font=f); d.rectangle([640 - tw / 2 - 12, y0 + i * 34 - 4, 640 + tw / 2 + 12, y0 + i * 34 + 30], fill=(2, 14, 24))
-        text(d, (640, y0 + i * 34), l, f, (220, 228, 235), "ma", a)
+        tw = d.textlength(l, font=f); d.rectangle([640 - tw / 2 - 14, y0 + i * 52 - 6, 640 + tw / 2 + 14, y0 + i * 52 + 48], fill=(2, 14, 24))
+        text(d, (640, y0 + i * 52), l, f, (220, 228, 235), "ma", a)
 
 # ── 장면들 (t = 장면 안 시간)
 def s0(d, t, dur):

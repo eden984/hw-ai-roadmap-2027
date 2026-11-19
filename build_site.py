@@ -106,7 +106,7 @@ def ex5():
 ROAD = [
     ("W1", "안전장치를 먼저 세우고 맡기기 시작", ["사람 승인 필수 목록 확정: EMC·RF·안전·OTA·센서 교정·데이터 무결성(Part 11)", "사내 AI 보안 규칙: 회로도·소스·고객 데이터 업로드 범위", "회의록·보고서·번역·로그 분석부터 AI로 시작", "설계·시험·불량 이력 데이터 쌓기 시작(연중 계속)"], "보안 규칙 팀 합의 · 내가 고른 문서는 AI 초안으로 시작"),
     ("W2", "AI 초안 + 사람 검증 체계", ["회로·BOM·전원 계산에 검증 체크리스트 붙이기", "펌웨어는 AI 작성 → 리뷰 → 테스트 통과만 병합", "측정 데이터 분석·단종 부품 모니터링 자동화"], "AI 산출물로 인한 설계 결함 0건 · Q1 평균 대비 PR당 리뷰 시간 30%↓ (Q1에 기준값 측정)"),
-    ("W3", "쌓은 데이터를 AI에 연결", ["Q1부터 모은 시험·불량·설계 결정 기록을 한 저장소로", "AI 사내 지식 검색 시범 운영", "데이터 준비도 낮은 업무(SPICE·수율 등)부터 적용"], "데이터 먼저 업무 중 2개 이상 데이터 준비도 +1점"),
+    ("W3", "쌓은 데이터를 AI에 연결", ["Q1부터 모은 시험·불량·설계 결정 기록을 한 저장소로", "AI 사내 지식 검색 시범 운영", "데이터 준비도 낮은 업무(SPICE·수율 등)부터 적용"], "데이터 먼저 업무 중 2개 이상 데이터 준비도 +1점 · 필드 로그 분석 시간 Q1 기준값 대비 50%↓"),
     ("W4", "점검하고 다시 투자", ["사람 승인 목록·보안 규칙 1년 점검", "확보한 시간을 EMC·RF·교정 같은 판단 업무에 재배치", "2028 계획 수립"], "확보 시간의 절반 이상을 판단 업무에 재투자"),
 ]
 def ex6():
@@ -144,7 +144,7 @@ def ex7():
 STRAT = [
     ("01", "필드 데이터 루프 엔지니어", "가전도 연결 데이터를 모은다. 다른 점은 로거는 데이터 자체가 고객에게 파는 상품이라는 것이다. AI로 필드 로그를 분석해 불량 징후를 찾는 시간을 줄인다(목표: Q3에 필드 로그 분석 소요 시간을 Q1 기준값의 절반으로). 펌웨어 배포는 고객의 변경 관리 주기를 따른다.", "W1·W2"),
     ("02", "전력 예산의 주인", "로거는 배터리 하나로 몇 달을, 그것도 영하 수십 도에서 버틴다. AI로 소비전류 프로파일을 자동 분석하고 배터리 수명을 예측하는 능력을 개인 무기로 만든다.", "W2"),
-    ("03", "규제 문서를 속도로 이긴다", "의약품·식품 콜드체인(GDP)과 KC·CE·FCC 문서는 AI 초안 효과가 큰 영역이다. 다만 판정·서명과 데이터 무결성(Part 11)은 사람이 지킨다.", "W2·W4"),
+    ("03", "규제 문서는 속도가 무기다", "의약품·식품 콜드체인(GDP)과 KC·CE·FCC 문서는 AI 초안 효과가 큰 영역이다. 다만 판정·서명과 데이터 무결성(Part 11)은 사람이 지킨다.", "W2·W4"),
     ("04", "기기에서 고객 화면까지 말하는 사람", "가전은 기기 완성도가 승부처고, 로거는 기기와 데이터가 함께 승부처다. AI 덕에 넓어진 손으로 디바이스-클라우드 전체 구조를 설명할 수 있는 사람이 된다.", "W2"),
 ]
 
@@ -212,7 +212,7 @@ details summary{cursor:pointer;color:var(--blue);font-weight:700;margin-top:10px
 .ans{display:grid;grid-template-columns:repeat(auto-fill,minmax(240px,1fr));gap:12px;margin-top:16px}.an{display:block;border:1px solid var(--line);border-top:4px solid var(--blue);padding:14px;text-decoration:none;color:var(--ink)}.an b{display:block;font-family:"Noto Serif KR",Georgia,serif;font-size:28px;color:var(--navy)}.an span{display:block;font-size:14px}.an em{display:block;font-style:normal;color:var(--blue);font-size:13px;margin-top:6px;font-weight:700}.an small{display:block;color:#7A8A96;font-size:11.5px;margin-top:6px}
 .go{display:inline-block;margin-top:12px;background:var(--blue);color:#fff;padding:9px 16px;text-decoration:none;font-weight:700;font-size:14px}
 .hint{display:none;font-size:12px;color:var(--ink2);margin:0 0 4px}
-@media(max-width:640px){.chart{overflow-x:auto}.chart svg{min-width:720px}.hint{display:block}#road .hint,.ganttc{display:none}.kpis{grid-template-columns:repeat(2,1fr)}.road,.review{grid-template-columns:1fr}.kpis b{font-size:26px}.wrap{padding:0 16px}}
+@media(max-width:640px){.chart{overflow-x:auto}.chart svg{min-width:720px}.hint{display:block}.ex{display:flex;flex-direction:column}.ex .sw{order:-1;margin:0 0 14px}.ex .exn{order:-3}.ex h2{order:-3}.ex .sub{order:-2}#road .hint,.ganttc{display:none}.kpis{grid-template-columns:repeat(2,1fr)}.road,.review{grid-template-columns:1fr}.kpis b{font-size:26px}.wrap{padding:0 16px}}
 """
 
 LINES_SVG = '<svg class="lines" viewBox="0 0 400 300" fill="none" stroke="#00A9F4" stroke-width="1.2"><path d="M0 60h120l30 30h90l20-20h140M0 120h80l40 40h160M40 200h120l30-30h100l30 30h80M0 250h200l20 20h180"/><rect x="230" y="110" width="90" height="90"/><path d="M245 110v-14M265 110v-14M285 110v-14M305 110v-14M245 214v-14M265 214v-14M285 214v-14M305 214v-14"/><circle cx="150" cy="90" r="4"/><circle cx="120" cy="160" r="4"/><circle cx="160" cy="200" r="4"/></svg>'
@@ -223,6 +223,7 @@ REVIEW = (OUT / "review.html").read_text(encoding="utf-8")
 R3 = json.load(open(OUT / "review3.json", encoding="utf-8")) if (OUT / "review3.json").exists() else {}
 for k in ("RED", "SILVER", "BLUE", "GOLD", "ALL"): REVIEW = REVIEW.replace("{R3_" + k + "}", str(R3.get(k, "진행 중")))
 REVIEW = REVIEW.replace("{R3_NOTE}", R3.get("note", ""))
+NARR = "".join(f"<li>{e(x)}</li>" for x in json.load(open(OUT / "video" / "narr.json", encoding="utf-8"))["lines"])
 page = f"""<!doctype html><html lang="ko"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
 <title>H/W × AI 로드맵 2027</title><meta name="description" content="H/W 개발 업무 {S["n"]}개 탐색적 데이터 분석으로 만든 2027 AI 협업 로드맵과 백색가전 대비 차별화 전략">
 <meta property="og:title" content="H/W 개발자 × AI 협업 로드맵 2027"><meta property="og:description" content="{S["n"]}개 업무 EDA → 4개 웨이브 → 분기별 마일스톤">
@@ -263,7 +264,7 @@ page = f"""<!doctype html><html lang="ko"><head><meta charset="utf-8"><meta name
 <div class="sw"><b>시사점</b>규모의 경제와 기구·안전 규격은 백색가전의 강점이라 정면 승부하지 않는다(회색). 대신 로거만의 네 축에 집중한다. 01 필드 데이터와 03 규제 문서는 EDA에서 AI 역량이 높게 나온 로그 분석·문서 업무가 받친다. 02 전력과 04 디바이스-클라우드는 AI가 거들 뿐, 사람의 설계 역량이 핵심이다.</div>
 {strat_html}</section>
 <section class="sec" id="video"><p class="exn">영상 · 60초</p><h2>1분 영상으로 보기</h2><p class="sub">키네틱 타이포그래피와 라인 아트, 한국어 내레이션</p>
-<video controls playsinline preload="metadata" poster="poster.png" src="roadmap_2027.mp4"></video></section>
+<video controls playsinline preload="metadata" poster="poster.png" src="roadmap_2027.mp4"></video><details><summary>소리 없이 보기: 내레이션 6줄</summary><ol>{NARR}</ol></details></section>
 <section class="sec method" id="method"><p class="exn">방법론</p><h2>방법론과 데이터</h2>
 <p><b>데이터의 성격.</b> 공개 설문에는 H/W 업무 단위의 AI 적합도가 없다. 그래서 H/W 개발 8단계 {S["n"]}개 업무(IoT 로거 고유 업무 7개 포함)를 정의하고 7개 변수에 1~5점을 매긴 평가 데이터셋을 만들었다. 점수는 2025~2026년 AI 도구 동향을 바탕으로 한 <b>가정</b>이며 실측이 아니다. 숫자는 방향을 보는 용도로 읽어야 한다.</p>
 <p><b>변수.</b> 주당 시간(h), AI 역량 2025·2027(1 못함 ~ 5 거의 대신함), 오류 비용(1 쉽게 되돌림 ~ 5 리콜·인증 실패), 검증 용이성(1 확인 어려움 ~ 5 자동 확인), 데이터 준비도(1 없음 ~ 5 정리됨).</p>
