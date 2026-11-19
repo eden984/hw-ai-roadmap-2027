@@ -92,7 +92,7 @@ def s0(d, t, dur):
         f = NUM[220]; text(d, (110, 150 + (1 - k) * 60), "2027", f, WHITE, a=clamp(k))
     kin(d, 118, 410, "H/W 개발자 × AI 협업 로드맵", KB[48], CYAN, 1.3, t)
     if t > 4.6:
-        n = int(48 * ease((t - 4.6) / 1.4))
+        n = int(S["n"] * ease((t - 4.6) / 1.4))
         text(d, (118, 490), f"{n}", NUM[90], WHITE); kin(d, 250, 520, "개 업무를 데이터로 분석", KB[40], WHITE, 4.8, t, 20)
 
 def s1(d, t, dur):
@@ -104,7 +104,7 @@ def s1(d, t, dur):
         if t > 0.3 + v * 0.1: text(d, (X(v), 275), str(v), KR[24], GREY, "ma")
     p = ease((t - 1.2) / 2.2); a, b = S["mean_cap25"], S["mean_cap27"]; cur = a + (b - a) * p
     if t > 1:
-        d.ellipse([X(a) - 14, 236, X(a) + 14, 264], outline=WHITE, width=4); text(d, (X(a), 190), "2025", KB[28], WHITE, "ms")
+        d.ellipse([X(a) - 14, 236, X(a) + 14, 264], outline=WHITE, width=4); text(d, (X(a), 190), f"2025  {a:.1f}", KB[28], WHITE, "ms")
     if t > 1.2:
         d.line([X(a), 250, X(cur), 250], fill=BLUE, width=8); d.ellipse([X(cur) - 18, 232, X(cur) + 18, 268], fill=BLUE)
         text(d, (X(cur), 210), f"{cur:.1f}", NUM[40], BLUE, "ms")
@@ -130,8 +130,8 @@ def s2(d, t, dur):
         n = int(S["top10_pct"] * ease((t - 3.2) / 1.6))
         k = back((t - 3.2) / 0.7); text(d, (800, 170 + 40 * (1 - clamp(k))), f"{n}%", NUM[150], BLUE, a=clamp(k))
     kin(d, 806, 360, "상위 10개 업무가", KB[40], WHITE, 3.8, t, 20)
-    kin(d, 806, 415, "줄일 시간의 절반 가까이", KB[40], WHITE, 4.3, t, 20)
-    for i, (k_, lab) in enumerate([("W1", "맡긴다"), ("W2", "검증한다"), ("W3", "쌓는다"), ("W4", "지킨다")]):
+    kin(d, 806, 415, f"줄일 시간의 {S['top10_pct']}%", KB[40], WHITE, 4.3, t, 20)
+    for i, (k_, lab) in enumerate([("W1", "맡긴다"), ("W2", "검증한다"), ("W3", "데이터부터"), ("W4", "지킨다")]):
         if t > 5.4 + i * 0.25:
             y = 490 + i * 0; x = 806 + i * 110; d.ellipse([x, 502, x + 16, 518], fill=WAVEC[k_]); text(d, (x + 22, 497), lab, KR[20], WHITE)
 
@@ -139,10 +139,10 @@ def s3(d, t, dur):
     traces(d, 1, DIM)
     kin(d, 100, 70, "2027 로드맵", KB[48], CYAN, 0, t, 20)
     y = 330; poly(d, [(110, y), (1170, y)], ease((t - 0.3) / 1.2), GREY, 4)
-    items = [("Q1", "맡긴다", "문서·로그·시험 코드", BLUE), ("Q2", "검증한다", "AI 초안 + 체크리스트", CYAN),
-             ("Q3", "쌓는다", "사내 설계·시험 데이터", GREY), ("Q4", "지킨다", "EMC·RF·안전은 사람이", WHITE)]
+    items = [("Q1", "세운다", "안전 규칙·데이터·반복 업무", BLUE), ("Q2", "검증한다", "AI 초안 + 체크리스트", CYAN),
+             ("Q3", "연결한다", "쌓은 데이터 → AI", GREY), ("Q4", "재투자", "확보한 시간을 판단으로", WHITE)]
     for i, (q, w, sub, col) in enumerate(items):
-        t0 = 1.0 + i * 2.15; x = 210 + i * 287
+        t0 = 0.8 + i * (dur - 2.2) / 4; x = 210 + i * 287
         k = back((t - t0) / 0.5)
         if k <= 0: continue
         r = 22 * clamp(k, 0, 1.3); d.ellipse([x - r, y - r, x + r, y + r], fill=col)
@@ -154,9 +154,9 @@ def s4(d, t, dur):
     traces(d, 1, DIM)
     a = clamp(t / 0.4) * (1 - ease((t - 1.8) / 0.6))
     if a > 0:
-        text(d, (640, 160), "백색가전과 같은 길?", KB[56], GREY, "ma", a)
+        text(d, (640, 160), "백색가전과 정면 승부?", KB[56], GREY, "ma", a)
         if t > 1.0:
-            L = d.textlength("백색가전과 같은 길?", font=KB[56]); d.line([640 - L / 2 * ease((t - 1) / 0.5) * 2 + L / 2 - L / 2, 195, 640 - L / 2 + L * ease((t - 1) / 0.5), 195], fill=(229, 84, 108), width=6)
+            L = d.textlength("백색가전과 정면 승부?", font=KB[56]); d.line([640 - L / 2, 195, 640 - L / 2 + L * ease((t - 1) / 0.5), 195], fill=(229, 84, 108), width=6)
     # 로거 라인 아트
     p = ease((t - 2) / 1.5)
     if p > 0:
@@ -179,10 +179,10 @@ def s4(d, t, dur):
 def s5(d, t, dur):
     traces(d, ease(t / 2), DIM); chip(d, 640, 330, 120, ease(t / 1.5), DIM)
     k = back(t / 0.8)
-    n = int(S["saved_pct"] * ease(t / 1.6))
-    if k > 0: text(d, (640, 110 + 40 * (1 - clamp(k))), f"{n}%", NUM[220], BLUE, "ma", clamp(k))
-    words(d, 330, 400, ["일은", "AI에", "맡기고,"], KB[56], 1.6, t)
-    words(d, 330, 475, ["판단은", "우리가", "지킨다"], KB[64], 3.0, t, hl=("판단은",))
+    n = S["total_saved"] * ease(t / 1.6)
+    if k > 0: text(d, (640, 110 + 40 * (1 - clamp(k))), f"{n:.1f}h", NUM[220], BLUE, "ma", clamp(k))
+    words(d, 330, 400, ["반복은", "AI로", "덜고,"], KB[56], 1.6, t)
+    words(d, 330, 475, ["그", "시간을", "판단에", "쓴다"], KB[64], 3.0, t, hl=("판단에",))
     if t > 6.3:
         a = ease((t - 6.3) / 0.6); d.rectangle([0, 0, W, H], fill=None)
         text(d, (640, 590 - 0), "H/W × AI  ·  2027", KB[34], CYAN, "ma", a)
