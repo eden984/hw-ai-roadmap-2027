@@ -113,9 +113,9 @@ def s1(d, t, dur):
     if t > 7: kin(d, 820, 515, f"상관 r = {S['r_cap27_data']:+.2f}", KB[34], CYAN, 7, t, 15)
 
 def s2(d, t, dur):
-    X = lambda v: 140 + (v - 1.5) / 3.6 * 560; Y = lambda v: 80 + (v - 0.6) / 4.8 * 470
-    poly(d, [(140, 560), (720, 560)], ease(t / 0.8), GREY, 2); poly(d, [(140, 560), (140, 70)], ease(t / 0.8), GREY, 2)
-    poly(d, [(X(3.5), 70), (X(3.5), 560)], ease((t - 0.6) / 0.8), DIM, 2)
+    X = lambda v: 140 + (v - 1.5) / 3.6 * 560; Y = lambda v: 50 + (v - 0.6) / 4.8 * 440
+    poly(d, [(140, 500), (720, 500)], ease(t / 0.8), GREY, 2); poly(d, [(140, 500), (140, 40)], ease(t / 0.8), GREY, 2)
+    poly(d, [(X(3.5), 40), (X(3.5), 500)], ease((t - 0.6) / 0.8), DIM, 2)
     seen = {}
     for i, r in enumerate(ROWS):
         k = back((t - 0.9 - i * 0.04) / 0.4)
@@ -125,7 +125,7 @@ def s2(d, t, dur):
         cx, cy = X(r["cap27"]) + rad * math.cos(ang), Y(r["err"]) + rad * math.sin(ang)
         rr = (4 + math.sqrt(r["hours"]) * 6) * clamp(k, 0, 1.3)
         d.ellipse([cx - rr, cy - rr, cx + rr, cy + rr], fill=WAVEC[r["wave"]])
-    text(d, (430, 580), "2027 AI 역량 →", KR[20], GREY, "ma")
+    text(d, (430, 512), "2027 AI 역량 →", KR[20], GREY, "ma")
     if t > 3.2:
         n = int(S["top10_pct"] * ease((t - 3.2) / 1.6))
         k = back((t - 3.2) / 0.7); text(d, (800, 170 + 40 * (1 - clamp(k))), f"{n}%", NUM[150], BLUE, a=clamp(k))
@@ -133,12 +133,12 @@ def s2(d, t, dur):
     kin(d, 806, 415, f"줄일 시간의 {S['top10_pct']}%", KB[40], WHITE, 4.3, t, 20)
     for i, (k_, lab) in enumerate([("W1", "맡긴다"), ("W2", "검증한다"), ("W3", "데이터부터"), ("W4", "지킨다")]):
         if t > 5.4 + i * 0.25:
-            y = 490 + i * 0; x = 806 + i * 110; d.ellipse([x, 502, x + 16, 518], fill=WAVEC[k_]); text(d, (x + 22, 497), lab, KR[20], WHITE)
+            y = 490 + i * 0; x = 806 + i * 110; d.ellipse([x, 472, x + 16, 488], fill=WAVEC[k_]); text(d, (x + 22, 467), lab, KR[20], WHITE)
 
 def s3(d, t, dur):
     traces(d, 1, DIM)
     kin(d, 100, 70, "2027 로드맵", KB[48], CYAN, 0, t, 20)
-    y = 330; poly(d, [(110, y), (1170, y)], ease((t - 0.3) / 1.2), GREY, 4)
+    y = 290; poly(d, [(110, y), (1170, y)], ease((t - 0.3) / 1.2), GREY, 4)
     items = [("Q1", "세운다", "안전 규칙·데이터·반복 업무", BLUE), ("Q2", "검증한다", "AI 초안 + 체크리스트", CYAN),
              ("Q3", "연결한다", "쌓은 데이터 → AI", GREY), ("Q4", "재투자", "확보한 시간을 판단으로", WHITE)]
     for i, (q, w, sub, col) in enumerate(items):
@@ -148,7 +148,7 @@ def s3(d, t, dur):
         r = 22 * clamp(k, 0, 1.3); d.ellipse([x - r, y - r, x + r, y + r], fill=col)
         text(d, (x, y - 50), q, NUM[40], col, "ms", clamp(k))
         kin(d, x, y + 50, w, KB[56], WHITE, t0 + 0.15, t, 30, "ma")
-        kin(d, x, y + 130, sub, KR[20], GREY, t0 + 0.4, t, 15, "ma")
+        kin(d, x, y + 125, sub, KR[24], GREY, t0 + 0.4, t, 15, "ma")
 
 def s4(d, t, dur):
     traces(d, 1, DIM)
