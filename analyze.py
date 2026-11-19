@@ -139,7 +139,7 @@ json.dump(dict(stats=S, rows=rows), open(OUT / "stats.json", "w", encoding="utf-
 print(json.dumps({k: v for k, v in S.items() if k not in ("by_stage", "corr", "rows", "waves")}, ensure_ascii=False, indent=1))
 for b in by_stage: print(b)
 
-# ── 차별화: 백색가전 H/W 일반 프로파일 vs IoT 물류 로거(윌로그형) 2027 목표 프로파일 (1~5, 가정 점수)
+# ── 차별화: 백색가전 H/W 일반 프로파일 vs IoT 물류 로거 2027 목표 프로파일 (1~5, 가정 점수)
 DIFF = [("필드 데이터 루프 속도", 3.5, 5, "로거는 데이터 자체가 고객에게 파는 상품"),
         ("출시 반복 속도", 2.5, 4, "소량 다품종이라 AI 프로토타이핑 효과가 크다"),
         ("저전력·무선 최적화 깊이", 2.5, 5, "LTE-M·BLE·배터리 수명이 제품 경쟁력"),
