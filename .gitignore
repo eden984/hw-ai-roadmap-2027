@@ -1,0 +1,5 @@
+video/*.mp3
+video/narr.m4a
+video/prev_*.png
+video/concat.txt
+__pycache__/
